@@ -1,0 +1,19 @@
+<?php
+// The "with column lines" version is now the default print_bill.php.
+// This file is kept only so any old bookmarks/links don't break.
+require_once 'includes/functions.php';
+
+// Safely cast the 'id' query parameter to an integer;
+// non-numeric or missing values become 0.
+$id = (int)($_GET['id'] ?? 0);
+
+// Redirect to the primary print bill page if a valid ID is supplied.
+// This ensures old links to this file continue to work.
+if ($id > 0) {
+    header('Location: print_bill.php?id=' . $id);
+    exit;
+}
+
+// Stop execution with a clear error message when no valid bill ID is provided.
+die("Invalid bill ID.");
+?>

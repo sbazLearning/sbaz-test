@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Shop Billing System</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-card {
+            background: white;
+            width: 320px;
+            padding: 2rem 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #1877f2;
+        }
+        .btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .btn:hover {
+            background: #166fe5;
+        }
+        .links {
+            margin-top: 1.2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #65676b;
+        }
+        .links a {
+            color: #1877f2;
+            text-decoration: none;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>Log In</h2>
+        <form>
+            <div class="form-group">
+                <input type="text" placeholder="Username or email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Log In</button>
+            <div class="links">
+                <a href="#">Forgot password?</a>
+                <span> | </span>
+                <a href="#">Create account</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "created": "2024-06-20T10:00:00Z",
+    "version": "1.0",
+    "description": "Sample JSON file for testing and demonstration purposes within the National Cement Sanitary & Hardware Billing System."
+  },
+  "sample_data": {
+    "customers": [
+      {
+        "id": 1,
+        "customer_code": "CUST00001",
+        "name": "Ramesh Patil",
+        "mobile_number": "9876543210",
+        "address": "Shop No. 12, Gandhi Road, Mumbai",
+        "total_billed": 15000.00,
+        "total_paid": 12000.00,
+        "balance": 3000.00
+      },
+      {
+        "id": 2,
+        "customer_code": "CUST00002",
+        "name": "Sita Devi",
+        "mobile_number": "9876543211",
+        "address": "House No. 45, Nehru Street, Delhi",
+        "total_billed": 8500.00,
+        "total_paid": 8500.00,
+        "balance": 0.00
+      },
+      {
+        "id": 3,
+        "customer_code": "CUST00003",
+        "name": "Amit Sharma",
+        "mobile_number": "9876543212",
+        "address": "Flat 301, Krishna Apartments, Bangalore",
+        "total_billed": 12000.00,
+        "total_paid": 9000.00,
+        "balance": 3000.00
+      }
+    ],
+    "items": [
+      {
+        "id": 1,
+        "item_name": "1 inch Aqua Elbow",
+        "short_name": "1inaqel",
+        "price": 12.50,
+        "discount": 5.00,
+        "discount_group_id": null,
+        "group_name": null
+      },
+      {
+        "id": 2,
+        "item_name": "2 inch PVC Pipe",
+        "short_name": "2pvcpipe",
+        "price": 45.00,
+        "discount": 10.00,
+        "discount_group_id": 1,
+        "group_name": "PVC Items"
+      },
+      {
+        "id": 3,
+        "item_name": "Cement Bag 50kg",
+        "short_name": "cement50",
+        "price": 350.00,
+        "discount": 0.00,
+        "discount_group_id": null,
+        "group_name": null
+      },
+      {
+        "id": 4,
+        "item_name": "Steel Rod 10mm",
+        "short_name": "steel10",
+        "price": 60.00,
+        "discount": 7.50,
+        "discount_group_id": null,
+        "group_name": null
+      },
+      {
+        "id": 5,
+        "item_name": "Nail Box 5kg",
+        "short_name": "nailbox",
+        "price": 220.00,
+        "discount": 5.00,
+        "discount_group_id": 2,
+        "group_name": "Hardware"
+      }
+    ],
+    "discount_groups": [
+      {
+        "id": 1,
+        "group_name": "PVC Items",
+        "discount": 10.00,
+        "item_count": 1
+      },
+      {
+        "id": 2,
+        "group_name": "Hardware",
+        "discount": 5.00,
+        "item_count": 1
+      }
+    ],
+    "bills": [
+      {
+        "id": 1,
+        "bill_number": "NCSH00001",
+        "customer_id": 1,
+        "customer_name": "Ramesh Patil",
+        "mobile_number": "9876543210",
+        "bill_date": "2024-06-15",
+        "subtotal": 1250.00,
+        "total_discount": 62.50,
+        "grand_total": 1187.50,
+        "notes": "Thank you for your business!"
+      },
+      {
+        "id": 2,
+        "bill_number": "NCSH00002",
+        "customer_id": 3,
+        "customer_name": "Amit Sharma",
+        "mobile_number": "9876543212",
+        "bill_date": "2024-06-18",
+        "subtotal": 890.00,
+        "total_discount": 44.50,
+        "grand_total": 845.50,
+        "notes": "Payment due within 7 days."
+      },
+      {
+        "id": 3,
+        "bill_number": "NCSH00003",
+        "customer_id": null,
+        "customer_name": "Walk-in Customer",
+        "mobile_number": null,
+        "bill_date": "2024-06-19",
+        "subtotal": 470.00,
+        "total_discount": 23.50,
+        "grand_total": 446.50,
+        "notes": "Thank you!"
+      }
+    ],
+    "bill_items": [
+      {
+        "id": 1,
+        "bill_id": 1,
+        "item_id": 1,
+        "item_name": "1 inch Aqua Elbow",
+        "short_name": "1inaqel",
+        "quantity": 50.00,
+        "price": 12.50,
+        "discount": 5.00,
+        "total": 593.75
+      },
+      {
+        "id": 2,
+        "bill_id": 1,
+        "item_id": 3,
+        "item_name": "Cement Bag 50kg",
+        "short_name": "cement50",
+        "quantity": 2.00,
+        "price": 350.00,
+        "discount": 0.00,
+        "total": 700.00
+      },
+      {
+        "id": 3,
+        "bill_id": 2,
+        "item_id": 2,
+        "item_name": "2 inch PVC Pipe",
+        "short_name": "2pvcpipe",
+        "quantity": 10.00,
+        "price": 45.00,
+        "discount": 10.00,
+        "total": 405.00
+      },
+      {
+        "id": 4,
+        "bill_id": 2,
+        "item_id": 4,
+        "item_name": "Steel Rod 10mm",
+        "short_name": "steel10",
+        "quantity": 5.00,
+        "price": 60.00,
+        "discount": 7.50,
+        "total": 277.50
+      },
+      {
+        "id": 5,
+        "bill_id": 3,
+        "item_id": 5,
+        "item_name": "Nail Box 5kg",
+        "short_name": "nailbox",
+        "quantity": 2.00,
+        "price": 220.00,
+        "discount": 5.00,
+        "total": 418.00
+      }
+    ],
+    "customer_payments": [
+      {
+        "id": 1,
+        "customer_id": 1,
+        "bill_id": 1,
+        "amount": 1200.00,
+        "payment_date": "2024-06-16",
+        "notes": "Partial payment for bill NCSH00001"
+      },
+      {
+        "id": 2,
+        "customer_id": 3,
+        "bill_id": 2,
+        "amount": 800.00,
+        "payment_date": "2024-06-19",
+        "notes": "Payment for bill NCSH00002"
+      }
+    ]
+  },
+  "statistics": {
+    "total_customers": 3,
+    "total_items": 5,
+    "total_bills": 3,
+    "total_payments": 2,
+    "total_outstanding": 3000.00,
+    "total_earnings": 2479.50
+  }
+}

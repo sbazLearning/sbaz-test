@@ -1,0 +1,408 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #dbeafe;
+    --accent: #f97316;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1e2432;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --radius: 12px;
+    --shadow: 0 2px 10px rgba(30, 41, 59, 0.06);
+    --shadow-lg: 0 8px 30px rgba(30, 41, 59, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ---------------- Login Page ---------------- */
+.login-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 45%, #0ea5e9 100%);
+    padding: 20px;
+}
+.login-card {
+    background: var(--card);
+    width: 100%;
+    max-width: 380px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    padding: 36px 32px;
+    text-align: center;
+}
+.login-card .shop-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 12px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.login-card h1 {
+    font-size: 20px;
+    margin: 4px 0 2px;
+    color: var(--text);
+}
+.login-card p.sub {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+.login-card .field { text-align: left; margin-bottom: 16px; }
+.login-card label { font-size: 13px; font-weight: 600; color: var(--text-light); }
+.login-card input {
+    width: 100%; padding: 12px 14px; margin-top: 6px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 15px; outline: none; transition: border .15s;
+}
+.login-card input:focus { border-color: var(--primary); }
+.btn-login {
+    width: 100%; padding: 13px; border: none; border-radius: 10px;
+    background: var(--primary); color: #fff; font-size: 15px; font-weight: 600;
+    cursor: pointer; margin-top: 8px; transition: background .15s;
+}
+.btn-login:hover { background: var(--primary-dark); }
+.login-error {
+    background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca;
+    padding: 10px 12px; border-radius: 8px; font-size: 13px; margin-bottom: 16px;
+}
+
+/* ---------------- App Shell ---------------- */
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    width: 230px;
+    background: #101a2e;
+    color: #cbd5e1;
+    padding: 22px 14px;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    transition: transform .25s ease;
+}
+.sidebar-footer {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 6px 14px;
+    border-top: 1px solid #1c2942;
+    background: #101a2e;
+    font-size: 9px;
+    line-height: 1.5;
+    color: #4b5875;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sidebar-footer b { color: #7a8aa8; font-weight: 600; }
+.sidebar .brand {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 8px 20px; margin-bottom: 10px;
+    border-bottom: 1px solid #253149;
+}
+.sidebar .brand .logo {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--primary); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #fff; font-size: 16px; flex-shrink: 0;
+}
+.sidebar .brand .name { font-size: 13px; line-height: 1.3; font-weight: 700; color: #fff; }
+.sidebar .brand .name span { display: block; font-weight: 400; font-size: 10px; color: #93a3bd; }
+
+.nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 11px 12px; border-radius: 9px; font-size: 14px;
+    margin-bottom: 4px; cursor: pointer; color: #cbd5e1;
+}
+.nav-item svg { flex-shrink: 0; }
+.nav-item:hover { background: #1a2740; color: #fff; }
+.nav-item.active { background: var(--primary); color: #fff; }
+
+.main {
+    margin-left: 230px;
+    flex: 1;
+    min-height: 100vh;
+    width: calc(100% - 230px);
+}
+.topbar {
+    background: var(--card);
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 50;
+}
+.topbar h2 { margin: 0; font-size: 18px; }
+.topbar .user-chip {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-light);
+}
+.menu-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer; padding: 4px;
+}
+
+.content { padding: 22px; max-width: 1300px; }
+
+/* ---------------- Cards / Widgets ---------------- */
+.grid { display: grid; gap: 18px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+.stat-card {
+    background: var(--card); border-radius: var(--radius); padding: 18px 20px;
+    box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px;
+}
+.stat-card .icon {
+    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+}
+.stat-card .icon.blue { background: #dbeafe; color: #2563eb; }
+.stat-card .icon.orange { background: #ffedd5; color: #ea580c; }
+.stat-card .icon.green { background: #dcfce7; color: #16a34a; }
+.stat-card .icon.purple { background: #ede9fe; color: #7c3aed; }
+.stat-card .label { font-size: 12px; color: var(--text-light); margin-bottom: 2px; }
+.stat-card .value { font-size: 20px; font-weight: 700; }
+.stat-card .value.masked { letter-spacing: 2px; color: #94a3b8; }
+.eye-toggle {
+    background: none; border: none; cursor: pointer; padding: 2px;
+    color: var(--text-light); display: inline-flex; align-items: center;
+}
+.eye-toggle:hover { color: var(--primary); }
+
+.card {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 20px;
+}
+.card-title {
+    font-size: 15px; font-weight: 700; margin: 0 0 14px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+
+.quick-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+.quick-link {
+    flex: 1; min-width: 190px;
+    background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 20px; display: flex; align-items: center; gap: 14px;
+    cursor: pointer; transition: all .15s;
+}
+.quick-link:hover { border-color: var(--primary); box-shadow: var(--shadow); transform: translateY(-2px); }
+.quick-link .icon {
+    width: 46px; height: 46px; border-radius: 12px; background: var(--primary-light);
+    color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.quick-link .title { font-weight: 700; font-size: 14px; }
+.quick-link .desc { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+/* ---------------- Buttons ---------------- */
+.btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 16px; border-radius: 9px; border: none;
+    font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all .15s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: #fff; border: 1.5px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-danger { background: #fef2f2; color: var(--danger); }
+.btn-danger:hover { background: #fee2e2; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-sm { padding: 6px 11px; font-size: 12.5px; }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+
+/* ---------------- Forms ---------------- */
+.form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-light); margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+    border-radius: 8px; font-size: 14px; outline: none; font-family: inherit;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+.hint { font-size: 11.5px; color: var(--text-light); margin-top: 4px; }
+
+/* Remove the native up/down spinner arrows on number fields everywhere
+   (qty, price, discount etc.) so a stray click doesn't nudge the value
+   by a tiny step - people just type the number directly instead. */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* ---------------- Table ---------------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--text-light); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+tbody tr:hover { background: #f8fafc; }
+.badge { padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.badge.green { background: #dcfce7; color: #16a34a; }
+.badge.orange { background: #ffedd5; color: #ea580c; }
+
+.search-bar {
+    display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.search-bar input, .search-bar select {
+    padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13.5px;
+}
+.search-bar input[type=text] { flex: 1; min-width: 160px; }
+
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text-light); }
+
+/* ---------------- Modal ---------------- */
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, .5);
+    display: none; align-items: center; justify-content: center; z-index: 500; padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+    background: #fff; border-radius: 14px; width: 100%; max-width: 480px;
+    max-height: 90vh; overflow-y: auto; padding: 24px;
+    box-shadow: var(--shadow-lg);
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.modal-header h3 { margin: 0; font-size: 16px; }
+.modal-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text-light); }
+
+/* ---------------- Toast ---------------- */
+.toast {
+    position: fixed; bottom: 24px; right: 24px; background: #101a2e; color: #fff;
+    padding: 13px 18px; border-radius: 10px; font-size: 13.5px; box-shadow: var(--shadow-lg);
+    z-index: 999; opacity: 0; transform: translateY(10px); transition: all .25s; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.error { background: #b91c1c; }
+.toast.success { background: #15803d; }
+
+/* ---------------- Billing Page ---------------- */
+.bill-items-table input, .bill-items-table select { width: 100%; padding: 7px 8px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13.5px; }
+.bill-items-table td { padding: 6px 8px; }
+.qty-input, .price-input, .discount-input { width: 80px; text-align: right; }
+.item-name-input { min-width: 200px; }
+.remove-row-btn { color: var(--danger); background: none; border: none; cursor: pointer; font-size: 16px; }
+.totals-box {
+    margin-top: 16px; margin-left: auto; width: 320px;
+    background: #f8fafc; border-radius: 10px; padding: 16px 18px;
+}
+.totals-box .row { display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0; }
+.totals-box .row.grand { font-size: 18px; font-weight: 800; border-top: 1.5px dashed var(--border); margin-top: 6px; padding-top: 12px; color: var(--primary); }
+
+/* ---------------- Printable Bill ---------------- */
+.print-bill {
+    background: #fff; max-width: 720px; margin: 0 auto; padding: 30px;
+    border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.print-bill .pb-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2px solid var(--text); padding-bottom: 14px; margin-bottom: 14px;
+}
+.print-bill .pb-title { font-size: 22px; font-weight: 800; letter-spacing: .5px; }
+.print-bill .pb-meta { text-align: right; font-size: 13px; color: var(--text-light); }
+.print-bill .pb-meta b { color: var(--text); font-size: 15px; }
+.print-bill .pb-customer { display: flex; justify-content: space-between; margin-bottom: 18px; font-size: 13.5px; }
+.print-bill table { width: 100%; table-layout: fixed; }
+.print-bill th { background: #f1f5f9; }
+.print-bill .col-sr { width: 5%; }
+.print-bill .col-item { width: 36%; }
+.print-bill .col-num { width: 11.8%; text-align: right; }
+
+/* Optional vertical lines between columns - used only on the
+   "with column lines" print bill variant */
+.print-bill .pb-items-table.with-col-lines th,
+.print-bill .pb-items-table.with-col-lines td {
+    border-right: 1px solid #d6dce5;
+}
+.print-bill .pb-items-table.with-col-lines th:last-child,
+.print-bill .pb-items-table.with-col-lines td:last-child {
+    border-right: none;
+}
+.print-bill .pb-totals { margin-left: auto; width: 280px; margin-top: 10px; }
+.print-bill .pb-notes {
+    margin-top: 24px; padding-top: 14px; border-top: 1px dashed var(--border);
+    font-size: 12.5px; color: var(--text-light); text-align: center;
+}
+.print-actions { max-width: 720px; margin: 16px auto; display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 900px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; width: 100%; }
+    .menu-toggle { display: block; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .content { padding: 14px; }
+    .totals-box { width: 100%; }
+    .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 90; }
+    .sidebar-backdrop.show { display: block; }
+}
+@media (max-width: 480px) {
+    .grid-4 { grid-template-columns: 1fr; }
+    .print-bill { padding: 16px; }
+    .print-bill .pb-header { flex-direction: column; gap: 8px; }
+    .print-bill .pb-meta { text-align: left; }
+}
+
+/* ---------------- Print Media ---------------- */
+/* ---------------------------------------------------------
+   Compact print layout - shrinks the printed bill (not the
+   on-screen preview) so many line items fit on one page.
+   --------------------------------------------------------- */
+@media print {
+    body * { visibility: hidden; }
+    .print-bill, .print-bill * { visibility: visible; }
+    .print-bill {
+        position: absolute; top: 0; left: 0; width: 100%;
+        box-shadow: none; margin: 0; padding: 8mm;
+    }
+    .print-actions, .sidebar, .topbar { display: none !important; }
+
+    .print-bill .pb-header { padding-bottom: 8px; margin-bottom: 10px; }
+    .print-bill .pb-title { font-size: 18px; }
+    .print-bill .pb-meta { font-size: 11px; }
+    .print-bill .pb-meta b { font-size: 13px; }
+    .print-bill .pb-customer { margin-bottom: 10px; font-size: 11.5px; }
+
+    /* Comfortable row height - lands around 25-30 rows on the first
+       printed page along with the header/customer/totals; anything
+       beyond that continues naturally onto the next page, with the
+       column headers repeating there too. */
+    .print-bill .pb-items-table thead { display: table-header-group; }
+    .print-bill .pb-items-table tr { page-break-inside: avoid; }
+    .print-bill .pb-items-table th,
+    .print-bill .pb-items-table td {
+        padding: 5px 6px;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+    .print-bill .pb-items-table th { font-size: 10px; }
+
+    .print-bill .pb-totals { margin-top: 10px; page-break-inside: avoid; }
+    .print-bill .totals-box { padding: 8px 12px; }
+    .print-bill .totals-box .row { padding: 3px 0; font-size: 11px; }
+    .print-bill .totals-box .row.grand { font-size: 15px; padding-top: 8px; margin-top: 4px; }
+
+    .print-bill .pb-notes { margin-top: 12px; padding-top: 10px; font-size: 10px; page-break-inside: avoid; }
+}
