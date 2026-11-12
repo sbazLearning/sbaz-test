@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Sunrise High School Portal</title>
+<style>
+/* ============================================================
+   CSS Custom Properties (Design Tokens)
+   ============================================================ */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #dbeafe;
+    --accent: #f97316;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1e2432;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --radius: 12px;
+    --shadow: 0 2px 10px rgba(30, 41, 59, 0.06);
+    --shadow-lg: 0 8px 30px rgba(30, 41, 59, 0.12);
+    --transition-fast: 0.15s ease;
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, Arial, sans-serif;
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 45%, #0ea5e9 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* ============================================================
+   Login Card
+   ============================================================ */
+.login-card {
+    background: var(--card);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    padding: 40px 36px;
+    text-align: center;
+}
+
+/* School Icon */
+.school-icon {
+    width: 72px; height: 72px;
+    margin: 0 auto 16px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.school-icon svg { width: 36px; height: 36px; stroke: var(--primary); }
+
+/* Typography */
+.login-card h1 {
+    font-size: 22px;
+    margin: 8px 0 4px;
+    color: var(--text);
+}
+.login-card p.sub {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+/* ============================================================
+   Form Fields
+   ============================================================ */
+.field { text-align: left; margin-bottom: 18px; }
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 7px;
+}
+
+.field input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: border var(--transition-fast), box-shadow var(--transition-fast);
+    font-family: inherit;
+}
+
+.field input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Disable native spinner on number inputs (not used here but good practice) */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background var(--transition-fast), transform 0.05s ease;
+}
+.btn-login:hover { background: var(--primary-dark); }
+.btn-login:active { transform: scale(0.98); }
+.btn-login:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+.btn-login:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   Error Message
+   ============================================================ */
+.login-error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    padding: 11px 13px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin-bottom: 18px;
+    text-align: left;
+    display: none; /* hidden by default */
+    animation: slideDown 0.2s ease;
+}
+.login-error.visible { display: block; }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Demo Hint
+   ============================================================ */
+.demo-hint {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--text-light);
+}
+.demo-hint code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, monospace;
+    color: var(--primary);
+}
+
+/* ============================================================
+   Utility: Screen Reader Only
+   ============================================================ */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+<div class="login-card" role="main">
+    <div class="school-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 10v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6"/>
+            <path d="M6 12v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5"/>
+            <path d="M12 2v4"/>
+            <path d="M8 6h8"/>
+            <path d="M12 22v-4"/>
+        </svg>
+    </div>
+    <h1>Sunrise High School</h1>
+    <p class="sub">Staff Portal — Sign in to continue</p>
+
+    <!-- Error message container (hidden by default, shown via JS) -->
+    <div class="login-error" id="errorBox" role="alert" aria-live="polite"></div>
+
+    <form id="loginForm" method="POST" action="login.php" novalidate>
+        <div class="field">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                autocomplete="username"
+                required
+                autofocus
+                placeholder="Enter your username"
+                aria-describedby="username-hint"
+            >
+            <span id="username-hint" class="sr-only">Enter your assigned username</span>
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="current-password"
+                required
+                placeholder="Enter your password"
+                aria-describedby="password-hint"
+            >
+            <span id="password-hint" class="sr-only">Enter your password</span>
+        </div>
+        <button type="submit" class="btn-login" id="submitBtn">Sign In</button>
+    </form>
+
+    <div class="demo-hint">
+        Demo credentials: <code>admin</code> / <code>admin123</code>
+    </div>
+</div>
+
+<script>
+/**
+ * Login Form Handler
+ * - Handles form submission via fetch
+ * - Shows/hides error messages
+ * - Manages loading state
+ * - Falls back to full page reload on unexpected responses
+ */
+(function() {
+    'use strict';
+
+    // DOM Elements
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('errorBox');
+    const submitBtn = document.getElementById('submitBtn');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    // State
+    let isSubmitting = false;
+
+    /**
+     * Display an error message to the user
+     * @param {string} msg - Error message to display
+     */
+    function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.add('visible');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign In';
+        isSubmitting = false;
+        // Focus the error for screen readers
+        errorBox.focus();
+    }
+
+    /**
+     * Hide the error message
+     */
+    function hideError() {
+        errorBox.classList.remove('visible');
+        errorBox.textContent = '';
+    }
+
+    /**
+     * Set loading state on the submit button
+     * @param {boolean} loading - Whether we're in a loading state
+     */
+    function setLoading(loading) {
+        isSubmitting = loading;
+        submitBtn.disabled = loading;
+        submitBtn.textContent = loading ? 'Signing in…' : 'Sign In';
+    }
+
+    /**
+     * Validate form inputs before submission
+     * @returns {boolean} - True if valid
+     */
+    function validateForm() {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+            showError('Please enter both username and password.');
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Handle form submission
+     * @param {Event} e - Submit event
+     */
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        if (isSubmitting) return;
+        if (!validateForm()) return;
+
+        hideError();
+        setLoading(true);
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        try {
+            const res = await fetch('login.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ username, password }),
+                credentials: 'same-origin' // Important for session cookies
+            });
+
+            // Successful login - login.php redirects to dashboard.php
+            if (res.redirected) {
+                window.location.href = res.url;
+                return;
+            }
+
+            // If we get here, login.php returned HTML (likely with an error)
+            const text = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const errEl = doc.querySelector('.login-error');
+
+            if (errEl && errEl.textContent.trim()) {
+                showError(errEl.textContent.trim());
+            } else {
+                // Unexpected response - reload to let server-side rendering handle it
+                window.location.reload();
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            showError('Network error. Please check your connection and try again.');
+        }
+    }
+
+    /**
+     * Clear error when user starts typing
+     */
+    function clearErrorOnInput() {
+        if (errorBox.classList.contains('visible')) {
+            hideError();
+        }
+    }
+
+    // Event Listeners
+    form.addEventListener('submit', handleSubmit);
+    usernameInput.addEventListener('input', clearErrorOnInput);
+    passwordInput.addEventListener('input', clearErrorOnInput);
+
+    // Prevent form submission on Enter in password field if already submitting
+    passwordInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && isSubmitting) {
+            e.preventDefault();
+        }
+    });
+
+    // Expose for debugging (optional)
+    window.LoginForm = { showError, hideError, setLoading };
+})();
+</script>
+</body>
+</html>
